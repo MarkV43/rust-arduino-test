@@ -1,0 +1,33 @@
+    cargo run --release
+    Compiling controller v0.1.0 (D:\dev\rust\controller)
+    warning: unused variable: `led`
+    --> src\main.rs:13:13
+    |
+    13 |     let mut led = pins.d13.into_output();
+    |             ^^^ help: if this is intentional, prefix it with an underscore: `_led`
+    |
+    = note: `#[warn(unused_variables)]` on by default
+    
+    warning: variable does not need to be mutable
+    --> src\main.rs:13:9
+    |
+    13 |     let mut led = pins.d13.into_output();
+    |         ----^^^
+    |         |
+    |         help: remove this `mut`
+    |
+    = note: `#[warn(unused_mut)]` on by default
+    
+    error: linking with `avr-gcc` failed: exit code: 1
+    |
+    = note: "avr-gcc" "-mmcu=atmega328p" "-Wl,--as-needed" "D:\\dev\\rust\\controller\\target\\avr-atmega328p\\release\\deps\\controller-9ab610135fbf917c.controller.3f1acc41-cgu.0.rcgu.o" "-Wl,--as-needed" "-L" "D:\\dev\\rust\\controller\\target\\avr-atmega328p\\release\\deps" "-L" "D:\\dev\\rust\\controller\\target\\release\\deps" "-L" "C:\\Users\\marce\\.rustup\\toolchains\\nightly-2022-06-13-x86_64-pc-windows-msvc\\lib\\rustlib\\avr-atmega328p\\lib" "-Wl,--start-group" "-Wl,--end-group" "-Wl,-Bstatic" "D:\\dev\\rust\\controller\\target\\avr-atmega328p\\release\\deps\\libcompiler_builtins-c377dcfe5b005f62.rlib" "-Wl,-Bdynamic" "-lgcc" "-Wl,-znoexecstack" "-L" "C:\\Users\\marce\\.rustup\\toolchains\\nightly-2022-06-13-x86_64-pc-windows-msvc\\lib\\rustlib\\avr-atmega328p\\lib" "-o" "D:\\dev\\rust\\controller\\target\\avr-atmega328p\\release\\deps\\controller-9ab610135fbf917c.elf" "-Wl,--gc-sections" "-no-pie"
+    = note: D:\dev\rust\controller\target\avr-atmega328p\release\deps\libcompiler_builtins-c377dcfe5b005f62.rlib(compiler_builtins-c377dcfe5b005f62.compiler_builtins.de32bf63-cgu.0.rcgu.o): In function `compiler_builtins::float::cmp::cmp':
+            compiler_builtins.de32bf63-cgu.0:(.text._ZN17compiler_builtins5float3cmp3cmp17he8231e525c0dd520E+0x28): undefined reference to `core::intrinsics::const_eval_select'
+    `compiler_builtins::float::mul::__mulsf3':
+            compiler_builtins.de32bf63-cgu.0:(.text._ZN17compiler_builtins5float3mul8__mulsf317hd57a91cf2f615d82E+0x57a): undefined reference to `core::intrinsics::const_eval_select'
+            collect2.exe: error: ld returned 1 exit status
+    = help: some `extern` functions couldn't be found; some native libraries may need to be installed or have their path specified
+    = note: use the `-l` flag to specify native libraries to link
+    = note: use the `cargo:rustc-link-lib` directive to specify the native libraries to link with Cargo (see https://doc.rust-lang.org/cargo/reference/build-scripts.html#cargorustc-link-libkindname)    
+    
+    warning: `controller` (bin "controller") generated 2 warningserror: could not compile `controller` due to previous error; 2 warnings emitted
